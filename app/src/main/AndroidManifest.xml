@@ -20,6 +20,11 @@
         </activity>
         <activity android:name=".feed.main.FeedMainActivity" />
         <activity android:name=".feed.detail.FeedDetailActivity"></activity>
+
+        <provider
+            android:exported="false"
+            android:authorities="com.uol.poc.brunosantos.pocuol"
+            android:name=".feed.repository.local.FeedProvider"/>
     </application>
 
 </manifest>
