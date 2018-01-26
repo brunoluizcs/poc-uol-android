@@ -29,8 +29,7 @@ public class FeedDbHelper extends SQLiteOpenHelper {
                         FeedContract.NewsEntry.COLUMN_THUMB + " TEXT NOT NULL, "                +
                         FeedContract.NewsEntry.COLUMN_SHARE_URL + " TEXT NOT NULL, "            +
                         FeedContract.NewsEntry.COLUMN_WEBVIEW_URL   + " TEXT NOT NULL, "        +
-                        FeedContract.NewsEntry.COLUMN_UPDATE   + " INTEGER NOT NULL, "          +
-                        " UNIQUE (" + FeedContract.NewsEntry.COLUMN_UPDATE + ") ON CONFLICT REPLACE);";
+                        FeedContract.NewsEntry.COLUMN_UPDATE   + " INTEGER NOT NULL);";
 
         sqLiteDatabase.execSQL(SQL_CREATE_WEATHER_TABLE);
     }

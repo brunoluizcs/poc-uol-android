@@ -140,46 +140,6 @@ public class TestFeedDatabase {
 
 
     /**
-     * Registro com as mesmas datas devem ser sobrescritos
-     */
-    @Test
-    public void testDuplicateUpdateDateInsertBehaviorShouldReplace() {
-
-        ContentValues testFeedValues = TestUtilities.createTestFeedContentValues();
-
-
-        String originalTitle = testFeedValues.getAsString(REFLECTED_COLUMN_TITLE);
-
-        database.insert(
-                FeedContract.NewsEntry.TABLE_NAME,
-                null,
-                testFeedValues);
-
-
-        String newTitle = "Novo titulo";
-
-        testFeedValues.put(REFLECTED_COLUMN_TYPE, newTitle);
-
-        database.insert(
-                FeedContract.NewsEntry.TABLE_NAME,
-                null,
-                testFeedValues);
-
-        Cursor newFeedIdCursor = database.query(
-                REFLECTED_TABLE_NAME,
-                new String[]{REFLECTED_COLUMN_UPDATE},
-                null,
-                null,
-                null,
-                null,
-                null);
-
-        String recordWithNewIdNotFound = "New record did not overwrite the previous record for the same date.";
-        assertTrue(recordWithNewIdNotFound,newFeedIdCursor.getCount() == 1);
-        newFeedIdCursor.close();
-    }
-
-    /**
      * Colunas com valores nulos não podem ser inseridas
      */
     @Test

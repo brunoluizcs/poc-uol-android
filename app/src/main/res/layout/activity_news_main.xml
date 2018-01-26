@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uol.poc.brunosantos.pocuol.feed.main.FeedMainActivity">
+    tools:context=".feed.view.main.FeedMainActivity">
 
 </android.support.constraint.ConstraintLayout>

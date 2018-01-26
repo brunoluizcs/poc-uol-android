@@ -69,4 +69,28 @@ public class News implements Parcelable {
             return new News[size];
         }
     };
+
+    public String getType() {
+        return type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public String getShareUrl() {
+        return shareUrl;
+    }
+
+    public String getWebViewUrl() {
+        return webViewUrl;
+    }
 }

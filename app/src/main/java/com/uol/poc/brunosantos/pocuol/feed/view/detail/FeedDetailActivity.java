@@ -1,4 +1,4 @@
-package com.uol.poc.brunosantos.pocuol.feed.detail;
+package com.uol.poc.brunosantos.pocuol.feed.view.detail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.uol.poc.brunosantos.pocuol.feed.main;
+package com.uol.poc.brunosantos.pocuol.feed.view.main;
 
 import android.content.Context;
 import android.content.Intent;

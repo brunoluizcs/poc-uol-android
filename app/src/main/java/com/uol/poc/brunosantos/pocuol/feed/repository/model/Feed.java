@@ -63,4 +63,6 @@ public class Feed implements Parcelable {
             return new Feed[size];
         }
     };
+
+
 }

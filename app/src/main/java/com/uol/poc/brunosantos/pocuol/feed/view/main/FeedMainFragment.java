@@ -1,4 +1,4 @@
-package com.uol.poc.brunosantos.pocuol.feed.main;
+package com.uol.poc.brunosantos.pocuol.feed.view.main;
 
 import android.support.v4.app.Fragment;
 
