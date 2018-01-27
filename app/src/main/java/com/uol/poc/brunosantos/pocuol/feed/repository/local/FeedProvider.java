@@ -39,6 +39,7 @@ public class FeedProvider extends ContentProvider {
         switch (sUriMatcher.match(uri)) {
             case CODE_FEED:
                 db.beginTransaction();
+                db.delete(FeedContract.NewsEntry.TABLE_NAME,null,null);
                 int rowsInserted = 0;
                 try {
                     for (ContentValues value : values) {

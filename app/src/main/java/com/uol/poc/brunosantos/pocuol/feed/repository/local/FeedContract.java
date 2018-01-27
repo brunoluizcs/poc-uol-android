@@ -28,6 +28,17 @@ public class FeedContract {
         public static final String COLUMN_SHARE_URL = "shareurl";
         public static final String COLUMN_WEBVIEW_URL = "webviewurl";
 
+        public static final String[] MAIN_PROJECTION = {
+                _ID,
+                COLUMN_TYPE,
+                COLUMN_TITLE,
+                COLUMN_THUMB,
+                COLUMN_UPDATE,
+                COLUMN_SHARE_URL,
+                COLUMN_WEBVIEW_URL
+
+        };
+
     }
 
 

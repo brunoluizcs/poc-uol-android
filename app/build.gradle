@@ -41,6 +41,8 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
 
+    implementation "com.firebase:firebase-jobdispatcher:$rootProject.jobdispatcherVersion"
+
     //Test Implementation
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"

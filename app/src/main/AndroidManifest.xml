@@ -21,13 +21,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feed.view.main.FeedMainActivity" />
-        <activity android:name=".feed.view.detail.FeedDetailActivity"></activity>
+        <activity android:name=".feed.main.view.FeedMainActivity" />
+        <activity
+            android:name=".feed.detail.FeedDetailActivity"/>
 
         <provider
             android:exported="false"
             android:authorities="com.uol.poc.brunosantos.pocuol"
             android:name=".feed.repository.local.FeedProvider"/>
+
+        <service
+            android:exported="false"
+            android:name=".feed.service.FeedIntentService"/>
+        <service
+            android:name=".feed.service.FeedJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
