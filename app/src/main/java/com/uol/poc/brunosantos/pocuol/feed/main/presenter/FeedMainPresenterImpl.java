@@ -16,7 +16,7 @@ public class FeedMainPresenterImpl implements FeedMainPresenter {
     @Override
     public CursorLoader getFeedCursorLoader(Context context) {
         Uri feedUri = FeedContract.NewsEntry.CONTENT_URI;
-        String sortOrder = FeedContract.NewsEntry.COLUMN_UPDATE + " ASC";
+        String sortOrder = FeedContract.NewsEntry.COLUMN_UPDATE + " DESC";
 
         return new CursorLoader(context,
                 feedUri,

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height_app_bar_layout">300dp</dimen>
+    <dimen name="expanded_title_margin_start">48dp</dimen>
+    <dimen name="expanded_title_margin_end">64dp</dimen>
+    <dimen name="item_default_padding">8dp</dimen>
+    <dimen name="thumb_width">142dp</dimen>
+    <dimen name="thumb_height">100dp</dimen>
+</resources>

@@ -2,11 +2,8 @@ package com.uol.poc.brunosantos.pocuol.feed.repository;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.content.CursorLoader;
 import android.util.Log;
 
 import com.uol.poc.brunosantos.pocuol.feed.repository.local.FeedContract;
@@ -18,7 +15,6 @@ import com.uol.poc.brunosantos.pocuol.rest.api.UolCallback;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by brunosantos on 26/01/2018.
@@ -62,19 +58,22 @@ public class FeedRepositoryManager {
         List<News> newsList = new ArrayList<>();
         if (cursor.moveToFirst()){
             do{
-               newsList.add(new News(
-                       cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_TYPE)),
-                       cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_TITLE)),
-                       cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_THUMB)),
-                       new Date(cursor.getInt(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_UPDATE))),
-                       cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_SHARE_URL)),
-                       cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_WEBVIEW_URL))
-
-               ));
+               newsList.add(getNews(cursor));
             }while(cursor.moveToNext());
         }
         return new Feed(newsList);
+    }
 
+
+    public static News getNews(Cursor cursor){
+        return new News(
+                cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_TYPE)),
+                cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_TITLE)),
+                cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_THUMB)),
+                new Date(cursor.getLong(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_UPDATE))),
+                cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_SHARE_URL)),
+                cursor.getString(cursor.getColumnIndex(FeedContract.NewsEntry.COLUMN_WEBVIEW_URL))
+        );
 
     }
 

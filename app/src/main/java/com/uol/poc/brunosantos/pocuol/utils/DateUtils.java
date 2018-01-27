@@ -16,7 +16,7 @@ import java.util.Locale;
  */
 
 public class DateUtils {
-
+    public static final String FORMAT_SHORT_DATE = "dd/MM";
 
     public static class DateTypeDeserializer implements JsonDeserializer<Date> {
         private final String[] DATE_FORMATS = new String[]{
@@ -46,4 +46,16 @@ public class DateUtils {
             return null;
         }
     }
+
+
+    public static String parseDate(Date date){
+        return parseDate(FORMAT_SHORT_DATE, date);
+    }
+
+    public static String parseDate(String format,Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format,Locale.getDefault());
+        return simpleDateFormat.format(date);
+    }
+
+
 }

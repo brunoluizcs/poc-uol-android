@@ -2,11 +2,11 @@ package com.uol.poc.brunosantos.pocuol.feed.main.view;
 
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.uol.poc.brunosantos.pocuol.R;
-import com.uol.poc.brunosantos.pocuol.feed.main.presenter.FeedMainPresenter;
-import com.uol.poc.brunosantos.pocuol.feed.main.presenter.FeedMainPresenterImpl;
 
 
 public class FeedMainActivity extends AppCompatActivity {
@@ -19,13 +19,16 @@ public class FeedMainActivity extends AppCompatActivity {
     }
 
     protected void loadFragment(){
-        FeedMainPresenter mainPresenter = new FeedMainPresenterImpl();
-        FeedMainFragment feedMainFragment = FeedMainFragment.newInstance(mainPresenter);
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fl_container,feedMainFragment)
-                .commit();
+        Fragment feedMainFragment = fragmentManager.findFragmentByTag(FeedMainFragment.TAG);
+        if (feedMainFragment == null){
+            feedMainFragment = new FeedMainFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.fl_container,feedMainFragment,FeedMainFragment.TAG)
+                    .commit();
+        }
     }
 
 }
