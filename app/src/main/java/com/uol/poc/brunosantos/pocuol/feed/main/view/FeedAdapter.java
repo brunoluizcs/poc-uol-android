@@ -26,8 +26,18 @@ import butterknife.ButterKnife;
 
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder>{
 
+    public interface OnFeedListener{
+        void onNewsClicked(News news);
+    }
+
     private Cursor mCursor;
     private int mLastPosition = RecyclerView.NO_POSITION;
+    private final OnFeedListener mOnFeedListener;
+
+
+    public FeedAdapter(OnFeedListener onFeedListener) {
+        mOnFeedListener = onFeedListener;
+    }
 
     public void swapCursor(Cursor cursor){
         mCursor = cursor;
@@ -66,7 +76,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         return mCursor != null ? mCursor.getCount() : 0;
     }
 
-    public class FeedViewHolder extends RecyclerView.ViewHolder{
+    public class FeedViewHolder extends RecyclerView.ViewHolder implements
+            View.OnClickListener{
+
         @BindView(R.id.iv_thumb) ImageView mThumbImageView;
         @BindView(R.id.tv_title) TextView mTitleTextView;
         @BindView(R.id.tv_update) TextView mUpdateTextView;
@@ -76,6 +88,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         FeedViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            itemView.setOnClickListener(this);
             mContext = itemView.getContext();
         }
 
@@ -86,9 +99,14 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
 
             mTitleTextView.setText(news.getTitle());
             mUpdateTextView.setText(DateUtils.parseDate(news.getUpdated()));
-
-
         }
 
+        @Override
+        public void onClick(View view) {
+            if  (mOnFeedListener != null){
+                mCursor.moveToPosition(getAdapterPosition());
+                mOnFeedListener.onNewsClicked(FeedRepositoryManager.getNews(mCursor));
+            }
+        }
     }
 }

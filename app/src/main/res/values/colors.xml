@@ -12,6 +12,7 @@
     <color name="colorDividerColor">#BDBDBD</color>
 
     <color name="gray">#cccccc</color>
+    <color name="white">#fff</color>
 
     <color name="blue_A200">#448AFF</color>
     <color name="orange_200">#FFE0B2</color>

@@ -1,5 +1,6 @@
 package com.uol.poc.brunosantos.pocuol.feed.main.view;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,15 +15,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.uol.poc.brunosantos.pocuol.R;
+import com.uol.poc.brunosantos.pocuol.feed.detail.FeedDetailActivity;
 import com.uol.poc.brunosantos.pocuol.feed.main.presenter.FeedMainPresenter;
 import com.uol.poc.brunosantos.pocuol.feed.main.presenter.FeedMainPresenterImpl;
+import com.uol.poc.brunosantos.pocuol.feed.repository.model.News;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.uol.poc.brunosantos.pocuol.feed.detail.FeedDetailFragment.EXTRA_NEWS;
 
 /**
  * Created by brunosantos on 25/01/2018.
@@ -71,7 +75,14 @@ public class FeedMainFragment extends Fragment implements
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         mPresenter = new FeedMainPresenterImpl();
-        mFeedAdapter = new FeedAdapter();
+        mFeedAdapter = new FeedAdapter(new FeedAdapter.OnFeedListener() {
+            @Override
+            public void onNewsClicked(News news) {
+                Intent intent = new Intent(getContext(), FeedDetailActivity.class);
+                intent.putExtra(EXTRA_NEWS,news);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
