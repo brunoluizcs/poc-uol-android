@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".feed.main.view.FeedMainActivity" />
         <activity
+            android:parentActivityName=".feed.main.view.FeedMainActivity"
             android:name=".feed.detail.FeedDetailActivity"/>
 
         <provider

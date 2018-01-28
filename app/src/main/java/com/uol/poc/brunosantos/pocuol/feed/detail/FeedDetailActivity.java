@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
 
 import com.uol.poc.brunosantos.pocuol.R;
 import com.uol.poc.brunosantos.pocuol.feed.FeedBaseActivity;
@@ -16,6 +17,11 @@ import static com.uol.poc.brunosantos.pocuol.feed.detail.FeedDetailFragment.EXTR
 
 public class FeedDetailActivity extends FeedBaseActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature(Window.FEATURE_PROGRESS);
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected void loadFragment() {

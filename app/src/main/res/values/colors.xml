@@ -14,6 +14,9 @@
     <color name="gray">#cccccc</color>
     <color name="white">#fff</color>
 
+    <color name="toolbarColor">@color/colorPrimary</color>
+    <color name="toolbarTitleColor">@color/white</color>
+
     <color name="blue_A200">#448AFF</color>
     <color name="orange_200">#FFE0B2</color>
     <color name="orange_500">#FF9800</color>

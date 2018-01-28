@@ -2,5 +2,6 @@
     <string name="app_name">Poc UOL</string>
     <string name="api_base_url">http://app.servicos.uol.com.br/</string>
     <string name="banner_image_view">https://picsum.photos/200/300/?blur</string>
+    <string name="action_share">Compartilhar</string>
 
 </resources>

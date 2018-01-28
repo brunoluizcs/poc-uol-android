@@ -1,15 +1,24 @@
 package com.uol.poc.brunosantos.pocuol.feed.detail;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.uol.poc.brunosantos.pocuol.R;
 import com.uol.poc.brunosantos.pocuol.feed.repository.model.News;
@@ -45,12 +54,55 @@ public class FeedDetailFragment extends Fragment {
         setRetainInstance(true);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+
+    private void setupActionBar() {
+        mToolbar.setBackgroundColor(getContext().getResources().getColor(R.color.toolbarColor));
+        mToolbar.setTitleTextColor(getContext().getResources().getColor(R.color.toolbarTitleColor));
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
-        mToolbar.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
-        mToolbar.setTitleTextColor(getContext().getResources().getColor(R.color.white));
+
+        ActionBar supportActionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                getActivity().onBackPressed();
+                return true;
+            case R.id.action_share:
+                share();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected void share() {
+        News news = getArguments().getParcelable(EXTRA_NEWS);
+        if (news != null) {
+            Uri webpage = Uri.parse(news.getShareUrl());
+
+            Intent intent = new Intent(Intent.ACTION_SEND, webpage);
+            intent.setType("text/plain");
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+            intent.putExtra(Intent.EXTRA_SUBJECT, news.getTitle());
+            intent.putExtra(Intent.EXTRA_TEXT, news.getShareUrl());
+
+            if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                startActivity(intent);
+            }
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.detail_menu, menu);
+
+
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     @Nullable
@@ -58,6 +110,8 @@ public class FeedDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed_detail,container,false);
         ButterKnife.bind(this,view);
+        setupActionBar();
+        setHasOptionsMenu(true);
         setupWebView();
         return view;
     }
@@ -68,6 +122,17 @@ public class FeedDetailFragment extends Fragment {
         String url = news != null ?
                 news.getWebViewUrl() :
                 "";
+        final Activity activity = getActivity();
+        mDetailWebView.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress) {
+                activity.setProgress(progress * 1000);
+            }
+        });
+        mDetailWebView.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                //Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         mDetailWebView.getSettings().setJavaScriptEnabled(true);
         mDetailWebView.loadUrl(url);
