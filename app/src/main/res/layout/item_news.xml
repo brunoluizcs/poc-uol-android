@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:clickable="true"
     app:cardUseCompatPadding="true"
+    android:clickable="true"
+    android:transitionName="@string/transition_detail"
     android:foreground="?android:attr/selectableItemBackground">
 
     <RelativeLayout
@@ -24,6 +25,7 @@
             android:layout_height="@dimen/thumb_height"
             android:layout_marginRight="@dimen/item_default_padding"
             android:layout_marginEnd="@dimen/item_default_padding"
+
             tools:src="@mipmap/ic_launcher"/>
 
         <TextView

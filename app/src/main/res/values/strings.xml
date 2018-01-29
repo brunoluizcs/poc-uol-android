@@ -5,5 +5,5 @@
     <string name="action_share">Compartilhar</string>
     <string name="error_load_url">Não foi possível carregar a url %s</string>
     <string name="back">Voltar</string>
-
+    <string name="transition_detail">transition-detail</string>
 </resources>

@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder>{
 
     public interface OnFeedListener{
-        void onNewsClicked(News news);
+        void onNewsClicked(View view, News news);
     }
 
     private Cursor mCursor;
@@ -105,7 +105,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         public void onClick(View view) {
             if  (mOnFeedListener != null){
                 mCursor.moveToPosition(getAdapterPosition());
-                mOnFeedListener.onNewsClicked(FeedRepositoryManager.getNews(mCursor));
+                mOnFeedListener.onNewsClicked(itemView, FeedRepositoryManager.getNews(mCursor));
             }
         }
     }

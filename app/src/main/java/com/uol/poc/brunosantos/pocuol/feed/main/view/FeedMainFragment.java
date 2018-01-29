@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -77,10 +78,14 @@ public class FeedMainFragment extends Fragment implements
         mPresenter = new FeedMainPresenterImpl();
         mFeedAdapter = new FeedAdapter(new FeedAdapter.OnFeedListener() {
             @Override
-            public void onNewsClicked(News news) {
+            public void onNewsClicked(View view, News news) {
                 Intent intent = new Intent(getContext(), FeedDetailActivity.class);
                 intent.putExtra(EXTRA_NEWS,news);
-                startActivity(intent);
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation(getActivity(),view, getString(R.string.transition_detail));
+
+                startActivity(intent,options.toBundle());
             }
         });
     }
