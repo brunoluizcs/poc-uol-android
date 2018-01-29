@@ -16,12 +16,14 @@
 
     <color name="toolbarColor">@color/colorPrimary</color>
     <color name="toolbarTitleColor">@color/white</color>
+    <color name="snackBarBackground">@color/colorPrimary</color>
 
     <color name="blue_A200">#448AFF</color>
     <color name="orange_200">#FFE0B2</color>
     <color name="orange_500">#FF9800</color>
     <color name="orange_600">#FB8C00</color>
     <color name="orange_700">#F57C00</color>
+
 
 
 </resources>

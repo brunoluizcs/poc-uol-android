@@ -3,5 +3,7 @@
     <string name="api_base_url">http://app.servicos.uol.com.br/</string>
     <string name="banner_image_view">https://picsum.photos/200/300/?blur</string>
     <string name="action_share">Compartilhar</string>
+    <string name="error_load_url">Não foi possível carregar a url %s</string>
+    <string name="back">Voltar</string>
 
 </resources>

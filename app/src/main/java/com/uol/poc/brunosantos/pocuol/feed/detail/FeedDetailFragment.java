@@ -2,10 +2,13 @@ package com.uol.poc.brunosantos.pocuol.feed.detail;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.uol.poc.brunosantos.pocuol.R;
 import com.uol.poc.brunosantos.pocuol.feed.repository.model.News;
@@ -36,6 +40,7 @@ public class FeedDetailFragment extends Fragment {
 
     @BindView(R.id.wv_detail) WebView mDetailWebView;
     @BindView(R.id.tb_main) Toolbar mToolbar;
+    @BindView(R.id.view_root) View mViewRoot;
 
 
 
@@ -64,6 +69,8 @@ public class FeedDetailFragment extends Fragment {
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+
     }
 
     @Override
@@ -92,7 +99,7 @@ public class FeedDetailFragment extends Fragment {
             intent.putExtra(Intent.EXTRA_TEXT, news.getShareUrl());
 
             if (intent.resolveActivity(getContext().getPackageManager()) != null) {
-                startActivity(intent);
+                startActivity(Intent.createChooser(intent, getContext().getString(R.string.app_name)));
             }
         }
     }
@@ -122,15 +129,17 @@ public class FeedDetailFragment extends Fragment {
         String url = news != null ?
                 news.getWebViewUrl() :
                 "";
-        final Activity activity = getActivity();
-        mDetailWebView.setWebChromeClient(new WebChromeClient() {
-            public void onProgressChanged(WebView view, int progress) {
-                activity.setProgress(progress * 1000);
-            }
-        });
         mDetailWebView.setWebViewClient(new WebViewClient() {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                //Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+                String errorMessage = getContext().getString(R.string.error_load_url,failingUrl);
+                Snackbar snackBar = Snackbar.make(mViewRoot, errorMessage, Snackbar.LENGTH_INDEFINITE);
+                snackBar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.snackBarBackground));
+                snackBar.setAction(R.string.back, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getActivity().onBackPressed();
+                    }
+                });
             }
         });
 
