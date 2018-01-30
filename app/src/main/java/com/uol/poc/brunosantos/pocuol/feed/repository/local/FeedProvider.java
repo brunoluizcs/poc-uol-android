@@ -76,7 +76,6 @@ public class FeedProvider extends ContentProvider {
                         null,
                         null,
                         sortOrder);
-
                 break;
             }
 
@@ -113,7 +112,6 @@ public class FeedProvider extends ContentProvider {
                         FeedContract.NewsEntry.TABLE_NAME,
                         selection,
                         selectionArgs);
-
                 break;
 
             default:

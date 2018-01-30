@@ -23,6 +23,7 @@
 
         <ImageView
             android:id="@+id/iv_backdrop"
+            android:contentDescription="@string/description_banner_to_main_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

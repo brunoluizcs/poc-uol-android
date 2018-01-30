@@ -53,7 +53,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
 
     @Override
     public void onBindViewHolder(FeedViewHolder holder, int position) {
-        mCursor.moveToPosition(position);
+        mCursor.moveToPosition(holder.getAdapterPosition());
         holder.bind(FeedRepositoryManager.getNews(mCursor));
 
         Animation animation = AnimationUtils.loadAnimation(holder.mContext,

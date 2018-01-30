@@ -2,7 +2,6 @@ package com.uol.poc.brunosantos.pocuol.dagger.modules;
 
 import com.uol.poc.brunosantos.pocuol.rest.api.UolApi;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;

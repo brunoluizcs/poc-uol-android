@@ -9,6 +9,7 @@ import android.content.pm.ProviderInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
@@ -70,7 +71,7 @@ public class TestFeedProvider {
      */
     @Test
     public void testBasicFeedQuery() {
-        FeedDbHelper dbHelper = new FeedDbHelper(mContext);
+        FeedDbHelper dbHelper = new FeedDbHelper(InstrumentationRegistry.getTargetContext());
         SQLiteDatabase database = dbHelper.getWritableDatabase();
 
         ContentValues testFeedContentValues = TestUtilities.createTestFeedContentValues();
@@ -156,7 +157,7 @@ public class TestFeedProvider {
 
         TestUtilities.TestContentObserver feedObserver = TestUtilities.getTestContentObserver();
 
-        ContentResolver contentResolver = mContext.getContentResolver();
+        ContentResolver contentResolver = InstrumentationRegistry.getTargetContext().getContentResolver();
 
         contentResolver.registerContentObserver(
                 FeedContract.NewsEntry.CONTENT_URI,

@@ -220,16 +220,14 @@ class TestUtilities {
             throws NoSuchFieldException, IllegalAccessException {
         Field stringField = clazz.getDeclaredField(variableName);
         stringField.setAccessible(true);
-        String value = (String) stringField.get(null);
-        return value;
+        return (String) stringField.get(null);
     }
 
     static Integer getStaticIntegerField(Class clazz, String variableName)
             throws NoSuchFieldException, IllegalAccessException {
         Field intField = clazz.getDeclaredField(variableName);
         intField.setAccessible(true);
-        Integer value = (Integer) intField.get(null);
-        return value;
+        return (Integer) intField.get(null);
     }
 
     static String readableClassNotFound(ClassNotFoundException e) {
@@ -264,7 +262,6 @@ class TestUtilities {
 
     static long normalizeDate(long date) {
         long daysSinceEpoch = TimeUnit.MILLISECONDS.toDays(date);
-        long millisFromEpochToTodayAtMidnightUtc = daysSinceEpoch * DAY_IN_MILLIS;
-        return millisFromEpochToTodayAtMidnightUtc;
+        return daysSinceEpoch * DAY_IN_MILLIS;
     }
 }

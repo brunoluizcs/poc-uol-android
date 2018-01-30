@@ -1,7 +1,6 @@
 package com.uol.poc.brunosantos.pocuol.feed.service;
 
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 

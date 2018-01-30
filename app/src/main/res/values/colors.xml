@@ -17,6 +17,7 @@
     <color name="toolbarColor">@color/colorPrimary</color>
     <color name="toolbarTitleColor">@color/white</color>
     <color name="snackBarBackground">@color/colorPrimary</color>
+    <color name="actionTextColor">@color/white</color>
 
     <color name="blue_A200">#448AFF</color>
     <color name="orange_200">#FFE0B2</color>

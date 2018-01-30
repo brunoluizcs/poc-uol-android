@@ -1,9 +1,6 @@
 package com.uol.poc.brunosantos.pocuol.feed.detail;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,10 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import com.uol.poc.brunosantos.pocuol.R;
 import com.uol.poc.brunosantos.pocuol.feed.repository.model.News;
@@ -134,12 +129,14 @@ public class FeedDetailFragment extends Fragment {
                 String errorMessage = getContext().getString(R.string.error_load_url,failingUrl);
                 Snackbar snackBar = Snackbar.make(mViewRoot, errorMessage, Snackbar.LENGTH_INDEFINITE);
                 snackBar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.snackBarBackground));
+                snackBar.setActionTextColor(getContext().getResources().getColor(R.color.actionTextColor));
                 snackBar.setAction(R.string.back, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         getActivity().onBackPressed();
                     }
                 });
+                snackBar.show();
             }
         });
 

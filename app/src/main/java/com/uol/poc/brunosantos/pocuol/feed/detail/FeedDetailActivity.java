@@ -1,16 +1,11 @@
 package com.uol.poc.brunosantos.pocuol.feed.detail;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Window;
 
 import com.uol.poc.brunosantos.pocuol.R;
 import com.uol.poc.brunosantos.pocuol.feed.FeedBaseActivity;
-import com.uol.poc.brunosantos.pocuol.feed.main.view.FeedMainFragment;
 import com.uol.poc.brunosantos.pocuol.feed.repository.model.News;
 
 import static com.uol.poc.brunosantos.pocuol.feed.detail.FeedDetailFragment.EXTRA_NEWS;

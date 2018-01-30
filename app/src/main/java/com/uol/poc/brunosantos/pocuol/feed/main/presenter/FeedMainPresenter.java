@@ -12,4 +12,5 @@ public interface FeedMainPresenter {
     CursorLoader getFeedCursorLoader(Context context);
     void syncInitialize(Context context);
 
+
 }

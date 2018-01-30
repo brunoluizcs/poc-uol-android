@@ -43,10 +43,15 @@ dependencies {
 
     implementation "com.firebase:firebase-jobdispatcher:$rootProject.jobdispatcherVersion"
 
+
     //Test Implementation
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+
+
 
 
 }
