@@ -9,7 +9,7 @@
     <string name="description_banner_to_main_list">Banner da listagem principal</string>
     <string name="description_image_to_news">Imagem de ilustração da noticia</string>
     <string name="news_not_available">Não encontramos nenhuma noticia</string>
-    <string name="no_connection_available">Conexão não disponível, verifique sua conexão e tente novamente.</string>
+    <string name="no_connection_available">Conexão não disponível</string>
     <string name="try_again">Tentar Novamente</string>
     <string name="close">Fechar</string>
 </resources>

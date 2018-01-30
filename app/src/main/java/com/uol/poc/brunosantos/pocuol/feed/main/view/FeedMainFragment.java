@@ -49,8 +49,11 @@ public class FeedMainFragment extends Fragment implements
     @BindView(R.id.iv_backdrop) ImageView mBackDropImageView;
     @BindView(R.id.rv_feed) RecyclerView mFeedRecyclerView;
     @BindView(R.id.view_root) View mViewRoot;
+    @BindView(R.id.iv_offline) ImageView mOfflineImageView;
 
     @Inject FeedRequester mFeedRequester;
+
+    private Snackbar snackbar;
 
     private static final int ID_FEED_LOADER = 44;
     public static final String TAG = FeedMainFragment.class.getSimpleName();
@@ -127,27 +130,25 @@ public class FeedMainFragment extends Fragment implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data == null || data.getCount() == 0){
-            boolean isConnected = NetworkUtils.isNetworkAvailable(getContext());
-            if (! isConnected) {
-                Snackbar snackbar = createSnackBar(mViewRoot, getString(R.string.no_connection_available));
-                snackbar.setAction(R.string.try_again, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        FeedRepositoryManager.sync(getContext().getContentResolver(),
-                                mFeedRequester);
-                    }
-                });
-                snackbar.show();
-            }
+        boolean hasData = data == null || data.getCount() == 0;
+        mOfflineImageView.setVisibility(hasData ? View.VISIBLE : View.GONE);
+        if (hasData){
+            snackbar = createSnackBar(mViewRoot, getString(R.string.no_connection_available));
+            snackbar.setAction(R.string.try_again, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FeedRepositoryManager.sync(getContext().getContentResolver(),
+                            mFeedRequester);
+                }
+            });
+            snackbar.show();
         }
-
         mFeedAdapter.swapCursor(data);
     }
 
     private void showNotConnectedMessage(){
         String noConnectionAvailable = getString(R.string.no_connection_available);
-        final Snackbar snackbar = createSnackBar(mViewRoot,noConnectionAvailable);
+        snackbar = createSnackBar(mViewRoot,noConnectionAvailable);
         snackbar.setAction(R.string.close, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,10 +169,14 @@ public class FeedMainFragment extends Fragment implements
     }
 
     public Snackbar createSnackBar(View view, String message){
-        final Snackbar snackBar = Snackbar.make(view,message, Snackbar.LENGTH_LONG);
-        snackBar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.snackBarBackground));
-        snackBar.setActionTextColor(getContext().getResources().getColor(R.color.actionTextColor));
-        return snackBar;
+        if (snackbar == null){
+            snackbar = Snackbar.make(view,message, Snackbar.LENGTH_INDEFINITE);
+        }else{
+            snackbar.setText(message);
+        }
+        snackbar.getView().setBackgroundColor(getContext().getResources().getColor(R.color.snackBarBackground));
+        snackbar.setActionTextColor(getContext().getResources().getColor(R.color.actionTextColor));
+        return snackbar;
     }
 
 }

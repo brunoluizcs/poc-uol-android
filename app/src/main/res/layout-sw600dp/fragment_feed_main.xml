@@ -10,18 +10,12 @@
     <include layout="@layout/include_app_bar" />
 
 
-    <FrameLayout
+    <include
         android:layout_gravity="center"
         android:layout_width="500dp"
         android:layout_height="match_parent"
         app:elevation="6dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_feed"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </FrameLayout>
-
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        layout="@layout/include_feed_list" />
 
 </android.support.design.widget.CoordinatorLayout>

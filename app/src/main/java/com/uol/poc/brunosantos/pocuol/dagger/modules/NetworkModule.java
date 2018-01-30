@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import com.uol.poc.brunosantos.pocuol.utils.DateUtils;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -49,6 +50,7 @@ public class NetworkModule{
     @Singleton
     OkHttpClient provideOkhttpClient(Cache cache) {
         OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.connectTimeout(10, TimeUnit.SECONDS);
         client.cache(cache);
         return client.build();
     }
